@@ -84,6 +84,13 @@ alias c='clear'
 # Shell integrations
 eval "$(fzf --zsh)"
 
+# NVM configuration and setup
+export NVM_DIR="$HOME/.nvm"
+# this load nvm
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+# This loads nvm bash_completion
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/Users/stefas_y/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
