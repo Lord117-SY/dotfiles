@@ -56,7 +56,7 @@ shape = "Block"
 TERM = "xterm-256color"
 
 [font]
-size = 18
+size = 13
 
 [font.bold]
 family = "JetBrainsMono Nerd Font"
@@ -88,17 +88,17 @@ mouse = "Middle"
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
 [shell]
-program = "/bin/zsh"
+program = "/opt/homebrew/bin/tmux"
 
 [window]
 decorations = "full"
 dynamic_title = true
-startup_mode = "Maximized"
+startup_mode = "windowed"
 
 [window.dimensions]
-columns = 160
-lines = 80
+columns = 120
+lines = 25
 
 [window.padding]
 x = 4
-y = 4
+#y = 4
