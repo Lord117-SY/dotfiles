@@ -13,6 +13,9 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
+# add gnutar to path
+PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
+
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -38,7 +41,7 @@ zinit light Aloxaf/fzf-tab
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 #zinit snippet OMZP::aws
-#zinit snippet OMZP::kubectl
+zinit snippet OMZP::kubectl
 #zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
 
