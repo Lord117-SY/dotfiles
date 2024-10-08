@@ -102,3 +102,9 @@ lines = 25
 [window.padding]
 x = 4
 #y = 4
+
+[keyboard]
+bindings = [
+{ key = "ArrowLeft", mods = "Option", mode = "AppCursor|AppKeypad|Alt|Vi", action = "WordRightEnd" },
+{ key = "ArrowRight", mods = "Option", mode = "AppCursor|AppKeypad|Alt|Vi", action = "WordLeft" },
+] 
