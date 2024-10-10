@@ -91,7 +91,7 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 program = "/opt/homebrew/bin/tmux"
 
 [window]
-decorations = "full"
+decorations = "none"
 dynamic_title = true
 startup_mode = "windowed"
 
@@ -105,6 +105,6 @@ x = 4
 
 [keyboard]
 bindings = [
-{ key = "ArrowLeft", mods = "Option", mode = "AppCursor|AppKeypad|Alt|Vi", action = "WordRightEnd" },
-{ key = "ArrowRight", mods = "Option", mode = "AppCursor|AppKeypad|Alt|Vi", action = "WordLeft" },
+{ key = "Right", mods = "Alt", chars = "\u001BF" },
+{ key = "Left",  mods = "Alt", chars = "\u001BB" },
 ] 
