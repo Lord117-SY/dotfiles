@@ -10,6 +10,13 @@ if [[ -f "/opt/homebrew/bin/brew" ]] then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
+KUBECONFIG="${HOME}/.kube/config"
+for i in $(ls -1 ${HOME}/.kube/configs/); do
+    if [[ "$KUBECONFIG" != *"$i"* ]]; then
+        export KUBECONFIG="${HOME}/.kube/configs/$i:$KUBECONFIG"
+    fi
+done
+
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
@@ -44,6 +51,10 @@ zinit snippet OMZP::sudo
 zinit snippet OMZP::kubectl
 #zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
+
+# >>>> Vagrant command completion (start)
+fpath=(/opt/vagrant/embedded/gems/gems/vagrant-2.4.3/contrib/zsh $fpath)
+# <<<<  Vagrant command completion (end)
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -110,4 +121,5 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
 
