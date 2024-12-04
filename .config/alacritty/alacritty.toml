@@ -128,7 +128,7 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 program = "/opt/homebrew/bin/tmux"
 
 [window]
-decorations = "none"
+decorations = "full"
 dynamic_title = true
 startup_mode = "windowed"
 opacity = 0.9
