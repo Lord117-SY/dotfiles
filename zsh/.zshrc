@@ -1,3 +1,6 @@
+export LANGUAGE=fr_FR.UTF-8
+export LC_ALL=fr_FR.UTF-8
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -8,8 +11,9 @@ fi
 PATH="$PATH:${HOME}/.fzf/"
 
 KUBECONFIG="${HOME}/.kube/config"
-if [[! -d "$HOME/.kube" ]]; then
-	mkdir -p  "${HOME}/.kube/configs" 
+if [[ ! -d "${HOME}/.kube/" ]];then
+    mkdir -p  "${HOME}/.kube/configs"
+fi
 for i in $(ls -1 ${HOME}/.kube/configs/); do
     if [[ "$KUBECONFIG" != *"$i"* ]]; then
         export KUBECONFIG="${HOME}/.kube/configs/$i:$KUBECONFIG"
@@ -111,7 +115,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-
-export LANGUAGE=fr_FR.UTF-8
-export LC_ALL=fr_FR.UTF-8
