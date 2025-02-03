@@ -1,4 +1,4 @@
-live_config_reload = true
+general.live_config_reload = true
 
 [bell]
 animation = "EaseOutExpo"
@@ -124,8 +124,8 @@ mouse = "Middle"
 [selection]
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
-[shell]
-program = "/usr/bin/zsh"
+[terminal.shell]
+program = "/opt/homebrew/bin/tmux"
 
 [window]
 decorations = "full"

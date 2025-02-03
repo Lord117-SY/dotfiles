@@ -1,6 +1,3 @@
-export LANGUAGE=fr_FR.UTF-8
-export LC_ALL=fr_FR.UTF-8
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -8,12 +5,16 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-PATH="$PATH:${HOME}/.fzf/"
+if [[ -f "/opt/homebrew/bin/brew" ]] then
+  # If you're using macOS, you'll want this enabled
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  # export PATH=$HOME/bin:/usr/local/bin:$PATH
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  # add gnutar to path
+  PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
+fi
 
 KUBECONFIG="${HOME}/.kube/config"
-if [[ ! -d "${HOME}/.kube/" ]];then
-    mkdir -p  "${HOME}/.kube/configs"
-fi
 for i in $(ls -1 ${HOME}/.kube/configs/); do
     if [[ "$KUBECONFIG" != *"$i"* ]]; then
         export KUBECONFIG="${HOME}/.kube/configs/$i:$KUBECONFIG"
@@ -40,15 +41,20 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
-zinit light conda-incubator/conda-zsh-completion
 
 # Add in snippets
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 #zinit snippet OMZP::aws
 zinit snippet OMZP::kubectl
-#zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
+
+#if using vagrant loading completion
+if [[ -f "/usr/local/bin/vagrant" ]] then
+  # >>>> Vagrant command completion (start)
+  fpath=(/opt/vagrant/embedded/gems/gems/vagrant-2.4.3/contrib/zsh $fpath)
+  # <<<<  Vagrant command completion (end)
+fi
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -94,24 +100,29 @@ alias c='clear'
 # Shell integrations
 eval "$(fzf --zsh)"
 
-# NVM configuration and setup
-export NVM_DIR="$HOME/.nvm"
-# this load nvm
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
-# This loads nvm bash_completion
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  
+#if nvm is present then we load nvm
+if [[ -f "/opt/homebrew/opt/nvm/nvm.sh" ]] then
+  # NVM configuration and setup
+  export NVM_DIR="$HOME/.nvm"
+  # this load nvm
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+  # This loads nvm bash_completion
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  
+fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$(${HOME}/miniconda3/bin/conda 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('${HOME}//miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "${HOME}/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "${HOME}/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "${HOME}//miniconda3/etc/profile.d/conda.sh" ]; then
+        . "${HOME}//miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="${HOME}/miniconda3/bin:$PATH"
+        export PATH="${HOME}//miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+
