@@ -4,9 +4,9 @@ set autoindent
 set trimblanks
 set linenumbers
 set constantshow
-set titlecolor white,red
+set titlecolor white,grey
 set keycolor cyan
 set functioncolor cyan
 set numbercolor yellow
 #set mouse
-include /opt/homebrew/Cellar/nanorc/2020.10.10/share/nanorc/*.nanorc
+include /usr/share/nano/*.nanorc
