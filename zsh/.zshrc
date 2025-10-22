@@ -48,9 +48,14 @@ zinit light Aloxaf/fzf-tab
 # Add in snippets
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
-#zinit snippet OMZP::aws
+zinit snippet OMZP::aws
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::command-not-found
+
+# load completions for kubectl
+if [[ -f "/usr/bin/kubectl"  ]] then
+  source <(kubectl completion zsh)
+fi
 
 #if using vagrant loading completion
 if [[ -f "/usr/local/bin/vagrant" ]] then
