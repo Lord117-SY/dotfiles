@@ -15,6 +15,8 @@ if [[ -f "/opt/homebrew/bin/brew" ]] then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
   # add gnutar to path
   PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
+  export HOMEBREW_NO_AUTO_UPDATE=1
+  export HOMEBREW_NO_ENV_HINTS=1
 fi
 
 KUBECONFIG="${HOME}/.kube/config"
@@ -44,6 +46,7 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
+zinit light BreakingPitt/zsh-packer
 
 # Add in snippets
 zinit snippet OMZP::git
@@ -60,7 +63,7 @@ fi
 #if using vagrant loading completion
 if [[ -f "/usr/local/bin/vagrant" ]] then
   # >>>> Vagrant command completion (start)
-  fpath=(/opt/vagrant/embedded/gems/gems/vagrant-2.4.3/contrib/zsh $fpath)
+  FPATH="/opt/vagrant/embedded/gems/gems/vagrant-2.4.3/contrib/zsh:$FPATH"
   # <<<<  Vagrant command completion (end)
 fi
 

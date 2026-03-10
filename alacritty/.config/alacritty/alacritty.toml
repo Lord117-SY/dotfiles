@@ -125,7 +125,7 @@ mouse = "Middle"
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
 [terminal.shell]
-program = "tmux"
+program = "/Users/stefas_y/.config/alacritty/start.sh"
 
 [window]
 decorations = "full"
